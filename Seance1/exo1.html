@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Exercice 05</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	</style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    var Personne = {
+        nom: "",
+        prenom: "",
+        dateNaissance: [1, 1, 1977],
+        taille:0,
+        init: function(nom, prenom, dateNaissance){
+          this.nom= nom;
+          this.prenom= prenom;
+          this.dateNaissance = dateNaissance;
+        },
+        decrire: function(){
+          console.log("je suis "+this.prenom+" "+this.nom+ ". Je suis né(e) le "+this.dateNaissance[0]+"."+this.dateNaissance[1]+"."+this.dateNaissance[2]);
+       },
+       direAge: function(){
+         var dateActu= new Date();
+         var année = dateActu.getFullYear();
+         if((dateActu.getMonth()<this.dateNaissance[1]) ||( dateActu.getMonth=this.dateNaissance[1] && dateActu.getDay()<this.dateNaissance[0])){
+           console.log( "age: "+(année-this.dateNaissance[2]-1) + "ans");
+         }
+         else {
+           console.log("age: "+(année-this.dateNaissance[2]) + "ans");
+         }
+       }
+    };
+
+    var professeur = Object.create(Personne);
+    professeur.adresseMail="";
+    professeur.initProfesseur= function(nom,prenom,dateNaissance,mail){
+      this.init(nom,prenom,dateNaissance);
+      this.adresseMail= mail;
+    }
+    professeur.decrire= function(){
+      console.log("je suis "+this.prenom+" "+this.nom+ ". Je suis né(e) le "+this.dateNaissance[0]+"."+this.dateNaissance[1]+"."+this.dateNaissance[2]
+      +" Mon adresseMail :"+this.adresseMail);
+
+    }
+    var prof = Object.create(professeur);
+    prof.initProfesseur("Durand", "Kevin", [26, 7, 1991], "blabla@foje.fr");
+    prof.decrire();
+    prof.direAge();
+
+   	</script>
+</head>
+<body>
+</body>

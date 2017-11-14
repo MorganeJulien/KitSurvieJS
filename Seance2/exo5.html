@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Kit de Survie JS</title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	  </style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+
+    		  $('#myForm').submit(function(){
+            $('#result').empty();
+            if($("#nom").val()!=''){
+            //  alert($("#type option:selected").val());
+              $.ajax({
+                url:"https://geo.api.gouv.fr/communes?"+$("#select option:selected").val()+"="+$("#nom").val(),
+                method:"GET",
+                dataType: "json",
+                success:function(data){
+                  $.each(data,function(key,val){
+                    var ul = document.createElement('ul');
+
+                    var nom = document.createElement('li');
+                    var codePost = document.createElement('li');
+                    var codeDep = document.createElement('li');
+                    var Population = document.createElement('li');
+
+                    nom.appendChild(document.createTextNode('Nom :'+val.nom));
+                    codePost.appendChild(document.createTextNode('Code Postal :'+val.codesPostaux[0]));
+                    codeDep.appendChild(document.createTextNode('Code Departement :'+val.codeDepartement));
+                    Population.appendChild(document.createTextNode('Population :'+val.population));
+
+
+                    ul.appendChild(nom);
+                    ul.appendChild(codePost);
+                    ul.appendChild(codeDep);
+                    ul.appendChild(Population);
+                    $("#result").append(ul);
+                  });
+                }
+
+
+              });
+            }
+            return false;
+          });
+    	});
+   	</script>
+</head>
+<body>
+  <form action="" id="myForm">
+    <select id="select">
+      <option value="nom">Nom</option>
+      <option value="codePostal" selected>Code Postal</option>
+      <option value="codeDepartement">Code Departement</option>
+    </select>
+    <input type="text" id="nom">
+    <input type="submit" value="Rechercher" />
+  </form>
+  <div id="result"></div>
+</body>
+
+</html>
