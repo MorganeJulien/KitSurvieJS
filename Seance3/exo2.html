@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+    <title>Kit de Survie JS</title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	  </style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    (function($){
+      $.fn.aggrandir = function(){
+        this.each(function(){
+          $(this).hover(function(){
+            $(this).animate({fontSize: '+=12px'},100);
+          },function(){
+            $(this).animate({fontSize: '-=12px'},100);
+          })
+        });
+
+        return this;
+      };
+    })(jQuery);;
+    $(document).ready(function(){
+
+      $("h1, p").aggrandir();
+    });
+   	</script>
+</head>
+<body>
+  <h1> Titre 1</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+    velit esse cillum dolore eu fugiat nulla pariatur.
+     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</body>
+</html>

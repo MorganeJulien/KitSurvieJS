@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+    <title>Kit de Survie JS</title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+      .fond{ border: 1px solid black; height: 100px;}
+      #carreRouge{ background: red; width: 50px; height: 50px;}
+	  </style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $( function() {
+        $( "#carreRouge" ).draggable({
+          containment: "parent",
+          drag: function(event,ui){
+
+            $('.x').text(ui.position.left);
+            $('.y').text(ui.position.top);
+          }
+        });
+        $('#sortable').sortable();
+        $('#liste').click(function(){
+          var res="";
+          $("#sortable>li").each(function(){
+            res+=$(this).data("id")+" ";
+          });
+          alert(res);
+        });
+      });
+    });
+   	</script>
+</head>
+<body>
+  <div class="fond">
+    <div id="carreRouge">
+    </div>
+  </div>
+  <div id="position">
+    <p> Position x : <span class='x'></span></p>
+    <p> Position Y : <span class='y'></span></p>
+  </div>
+
+  <div>
+    <ul id="sortable">
+      <li data-id="1" class="ui-state-default"> Item 1</li>
+      <li data-id="2" class="ui-state-default"> Item 2</li>
+      <li data-id="3" class="ui-state-default"> Item 3</li>
+      <li data-id="4" class="ui-state-default"> Item 4</li>
+    </ul>
+
+    <button id="liste">Ordre de la liste</button>
+  </div>
+
+</body>
+</html>

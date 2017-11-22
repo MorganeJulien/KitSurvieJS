@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Kit de Survie JS</title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+      table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+	  </style>
+
+</head>
+
+
+<body>
+  <div ng-app="app01" ng-controller="controlleur01">
+    <table>
+           <tr>
+              <th>Name :</th>
+              <th>Attack :</th>
+              <th>Defense :</th>
+           </tr>
+
+           <tr ng-repeat = "pokemon in pokemons">
+              <td>{{ pokemon.ename }}</td>
+              <td>{{ pokemon.base.Attack }}</td>
+              <td>{{ pokemon.base.Defense }}</td>
+           </tr>
+    </table>
+  </div>
+
+<script>
+var app = angular.module("app01", []);
+
+app.controller("controlleur01", function($scope, $http){
+  $http.get("https://raw.githubusercontent.com/fanzeyi/Pokemon-DB/master/pokedex.json").then(function(response){
+    $scope.pokemons=response.data;
+  });
+});
+
+</script>
+
+</body>
+</html>
